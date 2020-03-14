@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import trendsBanner from '../../assests/trends_banner_white.svg'
+import HalfScreenBanner from '../layout/HalfScreenBanner'
 
 function Signup() {
     return (
-        <div>
-            Signup
-        </div>
+        <Fragment>
+            <HalfScreenBanner title = "Signup" icon={trendsBanner}/>
+        </Fragment>
     )
 }
 
