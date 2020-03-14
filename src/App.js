@@ -1,6 +1,8 @@
 import React,{useEffect} from 'react'
 import * as firebase from 'firebase'
 
+import Signup from './components/Pages/Signup/SignupPage'
+
 function App() {
   useEffect(()=> {
     firebase.auth().onAuthStateChanged((currentUser) => {
@@ -10,8 +12,8 @@ function App() {
     })
   })
   return (
-    <div className="App">
-        Quil
+    <div>
+        <Signup/>
     </div>
   );
 }
