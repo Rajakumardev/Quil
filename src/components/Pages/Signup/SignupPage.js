@@ -7,9 +7,9 @@ function SignupPage() {
     return (
         <Fragment>
             <div className="flex">
-                <HalfScreenBanner title = "Signup" icon={trendsBanner}/>
+                <HalfScreenBanner title="Signup" icon={trendsBanner} />
                 <div className="h-screen w-1/2 flex items-center justify-center">
-                    <Signup/>
+                    <Signup />
                 </div>
             </div>
         </Fragment>
