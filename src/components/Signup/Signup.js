@@ -1,21 +1,34 @@
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as firebase from 'firebase'
 
 function Signup() {
+    
+    const { register, handleSubmit, errors, watch } = useForm()
+    const [showVerifyMsg, setShowVerifyMsg] = useState(false)
+
     useEffect(() => {
         firebase.auth().onAuthStateChanged((currentUser) => {
             if (!currentUser) {
                 console.log('Not Authenticated')
             } else {
                 //redirect to feed
+                console.log('redirect to feed')
             }
         })
     })
-    const { register, handleSubmit, errors, watch } = useForm()
+    
 
-    const registerUser = data => {
-
+    const registerUser = formData => {
+        firebase.auth().createUserWithEmailAndPassword(formData.userEmail,formData.userPassword).then(data=>{
+            data.user.sendEmailVerification().then(() => {
+                setShowVerifyMsg(true)
+            }).catch((error)=>{
+                throw error
+            })
+        }).catch(error =>{
+            throw error
+        })
     }
 
     const validateConfirmPassword = (value) => value === watch('userPassword')
@@ -62,7 +75,11 @@ function Signup() {
                 type="submit"
                 value="SIGNUP"
                 name="signupBtn"
-                className="p-3 w-full mt-8 bg-indigo-500 text-white rounded-md hover:bg-indigo-400" />
+                className="p-3 w-full mt-8 mb-6 bg-indigo-500 text-white rounded-md hover:bg-indigo-400" />
+           { showVerifyMsg && <div className="bg-white text-indigo-500 p-4 rounded-md shadow-lg flex items-center justify-around">
+                <div className="text-2xl p-2">✉️</div>
+                <div>verify your email address, verification email sent.</div>
+            </div>}
         </form>
     )
 }
