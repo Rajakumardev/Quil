@@ -1,19 +1,19 @@
-import React,{useEffect} from 'react'
+import React, { useEffect } from 'react'
 import * as firebase from 'firebase'
 
-import Signup from './components/Pages/Signup/SignupPage'
+import SignupPage from './components/Pages/Signup/SignupPage'
 
 function App() {
-  useEffect(()=> {
+  useEffect(() => {
     firebase.auth().onAuthStateChanged((currentUser) => {
-      if(!currentUser){
+      if (!currentUser) {
         console.log('Not Authenticated')
       }
     })
   })
   return (
     <div>
-        <Signup/>
+      <SignupPage />
     </div>
   );
 }
