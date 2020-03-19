@@ -1,6 +1,7 @@
 import React, { useEffect,useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as firebase from 'firebase'
+import { Link } from 'react-router-dom'
 
 function Signup() {
     
@@ -75,7 +76,10 @@ function Signup() {
                 type="submit"
                 value="SIGNUP"
                 name="signupBtn"
-                className="p-3 w-full mt-8 mb-6 bg-indigo-500 text-white rounded-md hover:bg-indigo-400" />
+                className="p-3 w-full mt-8 mb-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-400" />
+            <div className="mb-6 text-sm text-center">
+                Alerady have an account, then <Link to="/login" className="text-indigo-500 hover:underline">login</Link>
+            </div>
            { showVerifyMsg && <div className="bg-white text-indigo-500 p-4 rounded-md shadow-lg flex items-center justify-around">
                 <div className="text-2xl p-2">✉️</div>
                 <div>verify your email address, verification email sent.</div>

@@ -1,19 +1,14 @@
-import React, { useEffect } from 'react'
-import * as firebase from 'firebase'
-
-import SignupPage from './components/Pages/Signup/SignupPage'
+import React from 'react'
+import {BrowserRouter as Router} from 'react-router-dom'
+import Routes from './Routes/Routes'
 
 function App() {
-  useEffect(() => {
-    firebase.auth().onAuthStateChanged((currentUser) => {
-      if (!currentUser) {
-        console.log('Not Authenticated')
-      }
-    })
-  })
+
   return (
-    <div>
-      <SignupPage />
+    <div className="bg-white w-screen h-screen">
+    <Router>
+      <Routes/>
+    </Router>
     </div>
   );
 }
