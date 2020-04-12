@@ -20,7 +20,6 @@ function FeedPage() {
                 history.push('/login')
             }else{
                 setLoading(false)
-                console.log('authd')
             }
         })
     },[history])

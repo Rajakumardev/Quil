@@ -11,7 +11,7 @@ function Signup() {
     useEffect(() => {
         firebase.auth().onAuthStateChanged((currentUser) => {
             if (!currentUser) {
-                console.log('Not Authenticated')
+                //not authd
             } else {
                 history.push('/')
             }
@@ -21,7 +21,6 @@ function Signup() {
 
     const loginUser = formData => {
         firebase.auth().signInWithEmailAndPassword(formData.userEmail,formData.userPassword).catch(error => {
-            console.log(error.code)
             switch(error.code){
                 case "auth/wrong-password":
                     setloginMessage('username or password incorrect!')

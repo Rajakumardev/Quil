@@ -11,7 +11,7 @@ function Signup() {
     useEffect(() => {
         firebase.auth().onAuthStateChanged((currentUser) => {
             if (!currentUser) {
-                console.log('Not Authenticated')
+                //not authd
             } else {
                 history.push('/')
             }
