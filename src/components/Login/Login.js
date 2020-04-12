@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 function Signup() {
     
-    const { register, handleSubmit, errors, watch } = useForm()
+    const { register, handleSubmit, errors } = useForm()
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged((currentUser) => {

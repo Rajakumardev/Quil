@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom'
 import UnderConstruction from '../../Layouts/UnderConstruction'
 import UnderConstructionSVG from '../../../assests/under_construction.svg'
 import Loader from '../../Layouts/Loader'
+import Header from '../../Header/Header'
 
 function FeedPage() {
     
@@ -28,8 +29,9 @@ function FeedPage() {
         <div>
             {loading && 
             <div className="w-screen h-screen"><Loader loading={loading}/></div>}
-            {!loading && 
-            <UnderConstruction title="🏭 under construction" icon={UnderConstructionSVG}/>}
+            {!loading &&
+                <Header/> 
+            }
         </div>
     )
 }
