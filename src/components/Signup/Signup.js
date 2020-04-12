@@ -1,19 +1,19 @@
 import React, { useEffect,useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as firebase from 'firebase'
+import { Link, useHistory } from 'react-router-dom'
 
 function Signup() {
-    
+    const history = useHistory()
     const { register, handleSubmit, errors, watch } = useForm()
     const [showVerifyMsg, setShowVerifyMsg] = useState(false)
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged((currentUser) => {
             if (!currentUser) {
-                console.log('Not Authenticated')
+                //not authd
             } else {
-                //redirect to feed
-                console.log('redirect to feed')
+                history.push('/')
             }
         })
     })
@@ -41,7 +41,7 @@ function Signup() {
                 name="userEmail"
                 ref={register({ required: true })}
                 className="border-b-2 p-2 w-full border-indigo-200" />
-            <i className="text-red-600 px-2 mb-6 text-xs">
+            <i className="text-red-600 block px-2 mb-6 text-xs">
                 {errors.userEmail && 'not a valid email address!'}
             </i>
             <input
@@ -50,7 +50,7 @@ function Signup() {
                 name="userName"
                 ref={register({ required: true })}
                 className="border-b-2 p-2 w-full border-indigo-200" />
-            <i className="text-red-600 px-2 mb-6 text-xs">
+            <i className="text-red-600 block px-2 mb-6 text-xs">
                 {errors.userName && 'not a valid user name!'}
             </i>
             <input
@@ -59,7 +59,7 @@ function Signup() {
                 name="userPassword"
                 ref={register({ minLength: 8, required: true })}
                 className="border-b-2 p-2 w-full border-indigo-200" />
-            <i className="text-red-600 px-2 mb-6 text-xs">
+            <i className="text-red-600 block px-2 mb-6 text-xs">
                 {errors.userPassword && 'password too short (should contain atleast 8 characters).'}
             </i>
             <input
@@ -68,14 +68,17 @@ function Signup() {
                 name="userConfirmPassword"
                 ref={register({ required: true, validate: validateConfirmPassword })}
                 className="border-b-2  p-2 w-full border-indigo-200" />
-            <i className="text-red-600 px-2 mb-6 text-xs">
+            <i className="text-red-600 block px-2 mb-6 text-xs">
                 {errors.userConfirmPassword && 'doesnt match with password!'}
             </i>
             <input
                 type="submit"
                 value="SIGNUP"
                 name="signupBtn"
-                className="p-3 w-full mt-8 mb-6 bg-indigo-500 text-white rounded-md hover:bg-indigo-400" />
+                className="p-3 w-full mt-8 mb-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-400" />
+            <div className="mb-6 text-sm text-center">
+                Alerady have an account, then <Link to="/login" className="text-indigo-500 hover:underline">login</Link>
+            </div>
            { showVerifyMsg && <div className="bg-white text-indigo-500 p-4 rounded-md shadow-lg flex items-center justify-around">
                 <div className="text-2xl p-2">✉️</div>
                 <div>verify your email address, verification email sent.</div>
